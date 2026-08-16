@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Báo giá Phóng Sự Cưới - Chu Toàn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Mulish:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-bg: rgba(0, 0, 0, 0.4); 
+            --gold: #d4af37; 
+            --text-main: #e8e8e8;
+        }
+
+        /* Khắc chế Messenger tự động phóng to chữ */
+        html, body {
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Mulish', sans-serif;
+            background: url('https://i.postimg.cc/8CR7XchJ/CNT02370.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Lớp phủ nền */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 18, 14, 0.75); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1; 
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding-bottom: 30px;
+            overflow: hidden;
+        }
+
+        /* Header - Ngắt dòng chữ đẹp hơn */
+        .hero {
+            text-align: center;
+            padding: 45px 15px 25px; 
+            margin-bottom: 45px; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; /* Điều chỉnh cỡ chữ cho Messenger */
+            font-weight: 600;
+            color: var(--gold);
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.4; /* Tạo khoảng cách đẹp giữa 2 dòng tiêu đề */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+        }
+
+        /* Bảng giá dạng Thẻ */
+        .pricing-section {
+            padding: 0 15px 30px; /* Thu hẹp lề ngoài để có không gian bên trong */
+        }
+        
+        /* TIÊU ĐỀ CỘT */
+        .pricing-header-unique {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding: 0 5px;
+        }
+        .header-pill {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold);
+            padding: 6px 14px; /* Giảm nhẹ padding */
+            border-radius: 20px;
+            font-size: 11px; /* Giảm cỡ chữ */
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .header-line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.6) 50%, rgba(212, 175, 55, 0) 100%);
+            margin: 0 12px;
+        }
+
+        .price-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 18px 15px; /* Giảm lề 2 bên từ 20px xuống 15px để chữ có thêm chỗ trống */
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap; 
+            gap: 10px; 
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .card-title {
+            font-size: 14px; /* Giảm nhẹ cỡ chữ */
+            font-weight: 600;
+            line-height: 1.4;
+            flex: 1; 
+        }
+        .card-price {
+            font-family: 'Mulish', sans-serif;
+            font-size: 16px; /* Giảm nhẹ cỡ chữ để tránh bị rớt dòng trên Messenger */
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            white-space: nowrap !important; 
+            flex-shrink: 0; 
+        }
+
+        /* SLIDE TRƯỢT ẢNH */
+        .slider-section {
+            padding: 0 20px 40px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .slider-wrapper {
+            border-radius: 12px;
+            position: relative;
+        }
+        .slider-track {
+            display: flex;
+            gap: 15px; 
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; 
+            scroll-behavior: smooth;
+            padding-bottom: 25px; 
+            align-items: center; 
+        }
+        .slider-track::-webkit-scrollbar {
+            display: none; 
+        }
+        .slide {
+            flex: 0 0 100%; 
+            width: 100%;
+            height: auto; 
+            scroll-snap-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: block; 
+        }
+
+        /* Chi tiết dịch vụ */
+        .details-section {
+            padding: 0 20px 40px;
+        }
+        .details-box {
+            background: rgba(0,0,0,0.4);
+            border-left: 3px solid var(--gold);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .details-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+        }
+        .details-box li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .details-box li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 14px;
+        }
+        .highlight {
+            color: #ff5c5c;
+            font-size: 14px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Link tham khảo */
+        .links-section {
+            text-align: center;
+            padding: 0 20px 20px; 
+        }
+        .btn-link {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 10px auto;
+            padding: 14px;
+            background: rgba(0,0,0,0.4);
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .btn-link:hover {
+            background: var(--gold);
+            color: #141813;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 20px 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo img {
+            width: 130px; 
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.6)); 
+        }
+
+        .footer-address {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .footer-address span {
+            color: var(--gold);
+            font-weight: 800;
+            margin-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-icons a:hover, .social-icons a:active {
+            background: var(--gold);
+            color: #141813;
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .zalo-text {
+            font-family: 'Mulish', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        <!-- Header - Ép ngắt dòng để 2 bên đối xứng -->
+        <div class="hero">
+            <h1>Báo giá chụp<br>phóng sự cưới</h1>
+        </div>
+
+        <!-- Báo giá -->
+        <div class="pricing-section">
+            <div class="pricing-header-unique">
+                <div class="header-pill">Thời gian</div>
+                <div class="header-line"></div>
+                <div class="header-pill">Mức giá</div>
+            </div>
+
+            <div class="price-card">
+                <span class="card-title">Chụp 1 buổi</span>
+                <span class="card-price">1.400.000 VNĐ</span>
+            </div>
+            <div class="price-card">
+                <span class="card-title">Cưới 2 nhà (1 buổi)</span>
+                <span class="card-price">1.700.000 VNĐ</span>
+            </div>
+            <div class="price-card">
+                <span class="card-title">Chụp 2 buổi<br>(Sáng - Chiều)</span>
+                <span class="card-price">2.600.000 VNĐ</span>
+            </div>
+        </div>
+
+        <!-- Slide Ảnh -->
+        <div class="slider-section">
+            <div class="slider-wrapper">
+                <div class="slider-track" id="sliderTrack">
+                    <img class="slide" src="https://i.postimg.cc/G3Y0sDx3/CNT04563.jpg" alt="Ảnh PSC 1">
+                    <img class="slide" src="https://i.postimg.cc/Y2gcmFzr/CNT04636.jpg" alt="Ảnh PSC 2">
+                    <img class="slide" src="https://i.postimg.cc/bYbX2n9w/CNT04803.jpg" alt="Ảnh PSC 3">
+                    <img class="slide" src="https://i.postimg.cc/v89R6ntH/CNT04814.jpg" alt="Ảnh PSC 4">
+                    <img class="slide" src="https://i.postimg.cc/Gp2fqT04/layout-cuoi-duy-don.png" alt="Ảnh PSC 5">
+                    <img class="slide" src="https://i.postimg.cc/NFhPsNKW/layout-cuoi-duy-don-4.png" alt="Ảnh PSC 6">
+                    <img class="slide" src="https://i.postimg.cc/Zn7BPQ6P/CNT02580.jpg" alt="Ảnh PSC 7">
+                    <img class="slide" src="https://i.postimg.cc/BbYL5z22/CNT02821.jpg" alt="Ảnh PSC 8">
+                    <img class="slide" src="https://i.postimg.cc/hvyz8YVT/CNT02880.jpg" alt="Ảnh PSC 9">
+                    <img class="slide" src="https://i.postimg.cc/D0jJQN1d/vy-layout.jpg" alt="Ảnh PSC 10">
+                </div>
+            </div>
+        </div>
+
+        <!-- Chi tiết -->
+        <div class="details-section">
+            <div class="details-box">
+                <ul>
+                    <li>Ekip <strong>1 thợ/1 buổi</strong>, ngày chụp.</li>
+                    <li>Chụp <strong>không giới hạn</strong> số lượng File ảnh.</li>
+                    <li>Trả toàn bộ File ảnh chỉnh sửa sau <strong>3 - 4 ngày</strong>.</li>
+                    <li>Miễn phí đi lại trong bán kính <strong>15 km</strong>.</li>
+                    <li>Cọc trước 400.000 VNĐ để giữ lịch.
+                        <span class="highlight">(Không hoàn cọc nếu hủy sát ngày)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Nút Link Tham Khảo -->
+        <div class="links-section">
+            <a href="#" class="btn-link">Tham khảo thêm ảnh PSC</a>
+        </div>
+
+        <!-- FOOTER: Logo, Địa chỉ, Icon Link -->
+        <div class="footer">
+            <div class="footer-logo">
+                <img src="https://i.postimg.cc/wvF7Hr48/chutoanfoto2026-logo-new.png" alt="Chu Toàn Foto Logo">
+            </div>
+            
+            <div class="footer-address">
+                <span>Địa chỉ:</span> 179 Nguyễn Thị Minh Khai, P. Đức Xuân, Thái Nguyên
+            </div>
+
+            <div class="social-icons">
+                <!-- Facebook Icon -->
+                <a href="https://www.facebook.com/chutoan21" target="_blank" title="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
+                    </svg>
+                </a>
+                <!-- Instagram Icon -->
+                <a href="https://www.instagram.com/chutoan.fotos" target="_blank" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                    </svg>
+                </a>
+                <!-- Zalo Icon -->
+                <a href="https://zalo.me/0398256746" target="_blank" title="Zalo">
+                    <span class="zalo-text">Zalo</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script điều khiển slide trượt tự nhiên trên điện thoại -->
+    <script>
+        const track = document.getElementById('sliderTrack');
+        
+        let autoPlay = setInterval(() => {
+            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+            }
+        }, 3000); 
+
+        track.addEventListener('touchstart', () => {
+            clearInterval(autoPlay);
+        }, { passive: true });
+    </script>
+</body>
+</html>
