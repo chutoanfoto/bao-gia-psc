@@ -2,14 +2,14 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <!-- Khóa tỷ lệ zoom trên Messenger -->
+    <!-- Khóa tỷ lệ zoom trên Messenger để giao diện luôn chuẩn xác -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- THẺ BỔ SUNG: Hiển thị Preview Link xịn xò trên Messenger/Zalo -->
     <meta property="og:title" content="Báo Giá Phóng Sự Cưới | Chu Toàn Foto">
     <meta property="og:description" content="Lưu giữ trọn vẹn cảm xúc ngày trọng đại. Bảng giá ưu đãi, chụp không giới hạn file, trả ảnh nhanh chóng. Khám phá ngay!">
-    <!-- ĐÃ CẬP NHẬT ẢNH PREVIEW TINH CHỈNH MỚI NHẤT -->
-    <meta property="og:image" content="https://i.postimg.cc/L6c48ktB/file-preview.jpg">
+    <!-- ĐÃ CẬP NHẬT ẢNH PREVIEW MỚI NHẤT CỦA BẠN -->
+    <meta property="og:image" content="https://i.postimg.cc/3rk8mDyN/bia-mes.jpg">
     <meta property="og:url" content="https://chutoanfoto.github.io/bao-gia-psc/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -134,11 +134,24 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
+        
+        /* CSS GOM NHÓM TIÊU ĐỀ VÀ CHÚ THÍCH */
+        .card-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
         .card-title {
             font-size: 14px; 
             font-weight: 600;
             line-height: 1.4;
-            flex: 1; 
+        }
+        .card-desc {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.7); 
+            line-height: 1.35;
+            font-style: italic; 
         }
         .card-price {
             font-family: 'Mulish', sans-serif;
@@ -325,7 +338,7 @@
     <div class="bg-overlay"></div>
 
     <div class="container">
-        <!-- Header - Ép ngắt dòng để 2 bên đối xứng -->
+        <!-- Header -->
         <div class="hero">
             <h1>Báo giá chụp<br>phóng sự cưới</h1>
         </div>
@@ -338,17 +351,29 @@
                 <div class="header-pill">Mức giá</div>
             </div>
 
+            <!-- Gói 1 -->
             <div class="price-card">
-                <span class="card-title">Chụp 1 buổi</span>
-                <span class="card-price">1.400.000 VNĐ</span>
+                <div class="card-left">
+                    <div class="card-title">Chụp 1 buổi</div>
+                </div>
+                <div class="card-price">1.400.000 VNĐ</div>
             </div>
+            
+            <!-- Gói 2 CÓ CHÚ THÍCH -->
             <div class="price-card">
-                <span class="card-title">Cưới 2 nhà trong (1 buổi)</span>
-                <span class="card-price">1.700.000 VNĐ</span>
+                <div class="card-left">
+                    <div class="card-title">Cưới 2 nhà (1 buổi)</div>
+                    <div class="card-desc">Bao gồm làm lễ ra cửa nhà gái và sang tới nhà trai chụp xong lễ</div>
+                </div>
+                <div class="card-price">1.700.000 VNĐ</div>
             </div>
+            
+            <!-- Gói 3 -->
             <div class="price-card">
-                <span class="card-title">Chụp 2 buổi<br>(Sáng - Chiều)</span>
-                <span class="card-price">2.600.000 VNĐ</span>
+                <div class="card-left">
+                    <div class="card-title">Chụp 2 buổi<br>(Sáng - Chiều)</div>
+                </div>
+                <div class="card-price">2.600.000 VNĐ</div>
             </div>
         </div>
 
