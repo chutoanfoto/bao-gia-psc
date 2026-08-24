@@ -2,18 +2,16 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <!-- Khóa tỷ lệ zoom trên Messenger để giao diện luôn chuẩn xác -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- TỐI ƯU TỐC ĐỘ TẢI FONT CHỮ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- THẺ HIỂN THỊ PREVIEW TRÊN MESSENGER/ZALO/FACEBOOK -->
+    <!-- THẺ BỔ SUNG: Hiển thị Preview Link xịn xò trên Messenger/Zalo -->
     <meta property="og:title" content="Báo Giá Phóng Sự Cưới | Chu Toàn Foto">
     <meta property="og:description" content="Lưu giữ trọn vẹn cảm xúc ngày trọng đại. Bảng giá ưu đãi, chụp không giới hạn file, trả ảnh nhanh chóng. Khám phá ngay!">
     
-    <!-- ĐÃ CẬP NHẬT ẢNH PREVIEW MỚI NHẤT -->
+    <!-- ĐÃ CẬP NHẬT ẢNH PREVIEW MỚI NHẤT CỦA BẠN -->
     <meta property="og:image" content="https://i.postimg.cc/C14B6mXL/preview-bao-gia-psc-chu-toan.jpg">
+    
     <meta property="og:url" content="https://chutoanfoto.github.io/bao-gia-psc/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -47,7 +45,7 @@
             position: relative;
         }
 
-        /* Lớp phủ nền mờ */
+        /* Lớp phủ nền */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -71,7 +69,7 @@
             overflow: hidden;
         }
 
-        /* Header */
+        /* Header - Ngắt dòng chữ đẹp hơn */
         .hero {
             text-align: center;
             padding: 45px 15px 25px; 
@@ -95,6 +93,7 @@
             padding: 0 15px 30px; 
         }
         
+        /* TIÊU ĐỀ CỘT */
         .pricing-header-unique {
             display: flex;
             align-items: center;
@@ -138,6 +137,7 @@
             -webkit-backdrop-filter: blur(5px);
         }
         
+        /* CSS GOM NHÓM TIÊU ĐỀ VÀ CHÚ THÍCH */
         .card-left {
             flex: 1;
             display: flex;
@@ -372,7 +372,7 @@
             <!-- Gói 3 -->
             <div class="price-card">
                 <div class="card-left">
-                    <div class="card-title">Chụp 2 buổi<br><span style="font-size: 13px; opacity: 0.7; font-style: italic; font-weight: 400;">(Sáng - Chiều)</span></div>
+                    <div class="card-title">Chụp 2 buổi<br>(Sáng - Chiều)</div>
                 </div>
                 <div class="card-price">2.600.000 VNĐ</div>
             </div>
@@ -393,20 +393,19 @@
             </div>
         </div>
 
-        <!-- Slide Ảnh (Sử dụng loading="lazy" để tăng tốc độ tải) -->
+        <!-- Slide Ảnh -->
         <div class="slider-section">
             <div class="slider-wrapper">
                 <div class="slider-track" id="sliderTrack">
-                    <!-- Ảnh đầu tiên không lazy load để mượt ngay khi mở web -->
                     <img class="slide" src="https://i.postimg.cc/D0jJQN1d/vy-layout.jpg" alt="Ảnh PSC 1">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/Zn7BPQ6P/CNT02580.jpg" alt="Ảnh PSC 2">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/BbYL5z22/CNT02821.jpg" alt="Ảnh PSC 3">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/hvyz8YVT/CNT02880.jpg" alt="Ảnh PSC 4">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/G3Y0sDx3/CNT04563.jpg" alt="Ảnh PSC 5">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/Y2gcmFzr/CNT04636.jpg" alt="Ảnh PSC 6">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/v89R6ntH/CNT04814.jpg" alt="Ảnh PSC 7">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/Gp2fqT04/layout-cuoi-duy-don.png" alt="Ảnh PSC 8">
-                    <img class="slide" loading="lazy" src="https://i.postimg.cc/NFhPsNKW/layout-cuoi-duy-don-4.png" alt="Ảnh PSC 9">
+                    <img class="slide" src="https://i.postimg.cc/Zn7BPQ6P/CNT02580.jpg" alt="Ảnh PSC 2">
+                    <img class="slide" src="https://i.postimg.cc/BbYL5z22/CNT02821.jpg" alt="Ảnh PSC 3">
+                    <img class="slide" src="https://i.postimg.cc/hvyz8YVT/CNT02880.jpg" alt="Ảnh PSC 4">
+                    <img class="slide" src="https://i.postimg.cc/G3Y0sDx3/CNT04563.jpg" alt="Ảnh PSC 5">
+                    <img class="slide" src="https://i.postimg.cc/Y2gcmFzr/CNT04636.jpg" alt="Ảnh PSC 6">
+                    <img class="slide" src="https://i.postimg.cc/v89R6ntH/CNT04814.jpg" alt="Ảnh PSC 7">
+                    <img class="slide" src="https://i.postimg.cc/Gp2fqT04/layout-cuoi-duy-don.png" alt="Ảnh PSC 8">
+                    <img class="slide" src="https://i.postimg.cc/NFhPsNKW/layout-cuoi-duy-don-4.png" alt="Ảnh PSC 9">
                 </div>
             </div>
         </div>
@@ -427,16 +426,19 @@
             </div>
 
             <div class="social-icons">
+                <!-- Facebook Icon -->
                 <a href="https://www.facebook.com/chutoan21" target="_blank" title="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
                     </svg>
                 </a>
+                <!-- Instagram Icon -->
                 <a href="https://www.instagram.com/chutoan.fotos" target="_blank" title="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
                     </svg>
                 </a>
+                <!-- Zalo Icon -->
                 <a href="https://zalo.me/0398256746" target="_blank" title="Zalo">
                     <span class="zalo-text">Zalo</span>
                 </a>
@@ -445,7 +447,7 @@
 
     </div>
 
-    <!-- Script điều khiển slide trượt -->
+    <!-- Script điều khiển slide trượt tự nhiên trên điện thoại -->
     <script>
         const track = document.getElementById('sliderTrack');
         
