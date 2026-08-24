@@ -2,30 +2,29 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <!-- Khóa tỷ lệ zoom trên Messenger để giao diện luôn chuẩn xác -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- THẺ BỔ SUNG: Hiển thị Preview Link xịn xò trên Messenger/Zalo -->
     <meta property="og:title" content="Báo Giá Phóng Sự Cưới | Chu Toàn Foto">
     <meta property="og:description" content="Lưu giữ trọn vẹn cảm xúc ngày trọng đại. Bảng giá ưu đãi, chụp không giới hạn file, trả ảnh nhanh chóng. Khám phá ngay!">
-    
-    <!-- ĐÃ CẬP NHẬT ẢNH PREVIEW MỚI NHẤT CỦA BẠN -->
     <meta property="og:image" content="https://i.postimg.cc/C14B6mXL/preview-bao-gia-psc-chu-toan.jpg">
-    
     <meta property="og:url" content="https://chutoanfoto.github.io/bao-gia-psc/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
-    <title>Báo giá Phóng Sự Cưới - Chu Toàn</title>
+    <title>Báo giá Phóng Sự Cưới - Chu Toàn (Liquid Glass PRO)</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Mulish:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --card-bg: rgba(0, 0, 0, 0.4); 
             --gold: #d4af37; 
-            --text-main: #e8e8e8;
+            --text-main: #f5f5f5;
+            /* Thẻ kính mờ trong suốt cao cấp */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+            --glass-highlight-top: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-highlight-left: 1px solid rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
         }
 
-        /* Khắc chế Messenger tự động phóng to chữ */
         html, body {
             -webkit-text-size-adjust: 100%;
             -moz-text-size-adjust: 100%;
@@ -36,8 +35,7 @@
 
         body {
             font-family: 'Mulish', sans-serif;
-            background: url('https://i.postimg.cc/8CR7XchJ/CNT02370.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #030303;
             color: var(--text-main);
             margin: 0;
             padding: 0;
@@ -45,22 +43,48 @@
             position: relative;
         }
 
-        /* Lớp phủ nền */
+        /* ẢNH NỀN GỐC */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://i.postimg.cc/0y9qxvtH/backgr-done.jpg');
+            background-size: cover;
+            background-position: center 20%; 
+            background-repeat: no-repeat;
+            z-index: 0;
+            background-color: #030303;
+        }
+
+        /* LỚP PHỦ NỀN: BLUR CỰC MẠNH (45px) VÀ TỐI HÓA ĐỂ LỌC HẾT MÀU RỐI */
         .bg-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(15, 18, 14, 0.75); 
-            backdrop-filter: blur(8px); 
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 0;
+            height: 100vh;
+            backdrop-filter: blur(45px) saturate(90%);
+            -webkit-backdrop-filter: blur(45px) saturate(90%);
+            background: linear-gradient(180deg, rgba(3, 3, 3, 0.55) 0%, rgba(5, 5, 5, 0.82) 100%); 
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .bg-image {
+                background-size: 100% auto; 
+                background-position: top center; 
+            }
+            .bg-overlay {
+                background: linear-gradient(180deg, rgba(3, 3, 3, 0.45) 0%, rgba(5, 5, 5, 0.78) 40%, rgba(2, 2, 2, 0.96) 100%);
+            }
         }
 
         .container {
             position: relative;
-            z-index: 1; 
+            z-index: 2; 
             max-width: 650px;
             width: 100%;
             margin: 0 auto;
@@ -69,28 +93,72 @@
             overflow: hidden;
         }
 
-        /* Header - Ngắt dòng chữ đẹp hơn */
+        /* HEADER */
         .hero {
             text-align: center;
-            padding: 45px 15px 25px; 
-            margin-bottom: 45px; 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px 15px 25px; 
+            margin-bottom: 30px; 
+            position: relative;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 140px;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 75%);
+            filter: blur(15px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .hero-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 12px;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.9)); 
+        }
+
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 22px; 
+            font-size: 19px; 
             font-weight: 600;
             color: var(--gold);
             margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            line-height: 1.4; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+            white-space: nowrap; 
+            text-shadow: 2px 4px 12px rgba(0,0,0,0.95), 0 0 15px rgba(0,0,0,0.8); 
         }
 
-        /* Bảng giá dạng Thẻ */
+        /* KHỐI LIQUID GLASS PRO */
+        .liquid-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(110%);
+            -webkit-backdrop-filter: blur(16px) saturate(110%);
+            border: var(--glass-border);
+            border-top: var(--glass-highlight-top);
+            border-left: var(--glass-highlight-left);
+            box-shadow: var(--glass-shadow);
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .pricing-section {
-            padding: 0 15px 30px; 
+            padding: 0 20px 30px; 
         }
         
         /* TIÊU ĐỀ CỘT */
@@ -102,17 +170,19 @@
             padding: 0 5px;
         }
         .header-pill {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-top: var(--glass-highlight-top);
             color: var(--gold);
-            padding: 6px 14px; 
-            border-radius: 20px;
+            padding: 6px 16px; 
+            border-radius: 30px;
             font-size: 11px; 
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .header-line {
             flex-grow: 1;
@@ -121,23 +191,21 @@
             margin: 0 12px;
         }
 
+        /* Thẻ giá */
         .price-card {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 18px 15px; 
-            margin-bottom: 15px;
+            padding: 22px 20px; 
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: nowrap; 
             gap: 10px; 
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+        }
+        .price-card > div {
+            position: relative;
+            z-index: 1;
         }
         
-        /* CSS GOM NHÓM TIÊU ĐỀ VÀ CHÚ THÍCH */
         .card-left {
             flex: 1;
             display: flex;
@@ -145,34 +213,66 @@
             gap: 4px;
         }
         .card-title {
-            font-size: 14px; 
+            font-size: 15px; 
             font-weight: 600;
             line-height: 1.4;
-        }
-        .card-desc {
-            font-size: 11.5px;
-            color: rgba(255, 255, 255, 0.7); 
-            line-height: 1.35;
-            font-style: italic; 
+            letter-spacing: 0.5px;
         }
         .card-price {
             font-family: 'Mulish', sans-serif;
-            font-size: 16px; 
+            font-size: 17px; 
             color: var(--gold);
             font-weight: 800;
             letter-spacing: 0.5px;
             white-space: nowrap !important; 
             flex-shrink: 0; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* SLIDE TRƯỢT ẢNH */
+        /* Chi tiết Dịch Vụ */
+        .details-section {
+            padding: 0 20px 40px;
+        }
+        .details-box {
+            padding: 25px 25px;
+            border-radius: 12px 22px 22px 12px;
+            border-left: 3px solid var(--gold);
+        }
+        .details-box > ul {
+            position: relative;
+            z-index: 1;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+        }
+        .details-box li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .details-box li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 14px;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+        .highlight {
+            color: #ff5c5c;
+            font-size: 14px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* SLIDE TRƯỢT ẢNH MỚI CẬP NHẬT */
         .slider-section {
             padding: 0 20px 40px;
             width: 100%;
             box-sizing: border-box;
         }
         .slider-wrapper {
-            border-radius: 12px;
             position: relative;
         }
         .slider-track {
@@ -194,46 +294,11 @@
             width: 100%;
             height: auto; 
             scroll-snap-align: center;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            border: var(--glass-border);
+            border-top: var(--glass-highlight-top);
+            box-shadow: var(--glass-shadow);
             display: block; 
-        }
-
-        /* Chi tiết dịch vụ */
-        .details-section {
-            padding: 0 20px 40px;
-        }
-        .details-box {
-            background: rgba(0,0,0,0.4);
-            border-left: 3px solid var(--gold);
-            padding: 20px 25px;
-            border-radius: 0 12px 12px 0;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-        .details-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 15px;
-        }
-        .details-box li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-        .details-box li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-            font-size: 14px;
-        }
-        .highlight {
-            color: #ff5c5c;
-            font-size: 14px;
-            display: block;
-            margin-top: 4px;
         }
 
         /* Link tham khảo */
@@ -242,48 +307,52 @@
             padding: 0 20px 20px; 
         }
         .btn-link {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: calc(100% - 40px);
             margin: 10px auto;
-            padding: 14px;
-            background: rgba(0,0,0,0.4);
+            padding: 16px;
             color: var(--text-main);
             text-decoration: none;
             border-radius: 30px;
-            border: 1px solid var(--gold);
             font-weight: 700;
             font-size: 14px;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            letter-spacing: 1.5px;
         }
-        .btn-link:hover {
-            background: var(--gold);
-            color: #141813;
+        .btn-link > span {
+            position: relative;
+            z-index: 1;
+        }
+        .btn-link:active {
+            transform: scale(0.95);
         }
 
         /* Footer */
         .footer {
             text-align: center;
             padding: 20px 20px 40px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
-        
-        .footer-logo img {
-            width: 130px; 
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.6)); 
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
         }
 
         .footer-address {
             font-size: 14px;
-            color: #ccc;
+            color: #dcdcdc;
+            margin-top: 15px;
             margin-bottom: 25px;
             line-height: 1.6;
         }
@@ -304,28 +373,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(212, 175, 55, 0.4);
             color: var(--gold);
             text-decoration: none;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
         }
-
-        .social-icons a:hover, .social-icons a:active {
-            background: var(--gold);
-            color: #141813;
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-        }
-
-        .social-icons a svg {
+        .social-icons a > svg {
+            position: relative;
+            z-index: 1;
             width: 20px;
             height: 20px;
             fill: currentColor;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
         .zalo-text {
@@ -333,16 +394,20 @@
             font-weight: 800;
             font-size: 13px;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
     <div class="container">
-        <!-- Header -->
+        <!-- HEADER -->
         <div class="hero">
-            <h1>Báo giá chụp<br>phóng sự cưới</h1>
+            <img class="hero-logo" src="https://i.postimg.cc/wvF7Hr48/chutoanfoto2026-logo-new.png" alt="Chu Toàn Foto Logo">
+            <h1>Báo giá chụp phóng sự cưới</h1>
         </div>
 
         <!-- Báo giá -->
@@ -354,15 +419,15 @@
             </div>
 
             <!-- Gói 1 -->
-            <div class="price-card">
+            <div class="price-card liquid-glass">
                 <div class="card-left">
-                    <div class="card-title">Gộp 2 lễ</div>
+                    <div class="card-title">Gộp 2 Lễ / Buổi</div>
                 </div>
                 <div class="card-price">1.800.000 VNĐ</div>
             </div>
 
             <!-- Gói 2 -->
-            <div class="price-card">
+            <div class="price-card liquid-glass">
                 <div class="card-left">
                     <div class="card-title">Chụp 1 buổi</div>
                 </div>
@@ -370,9 +435,9 @@
             </div>
             
             <!-- Gói 3 -->
-            <div class="price-card">
+            <div class="price-card liquid-glass">
                 <div class="card-left">
-                    <div class="card-title">Chụp 2 buổi<br>(Sáng - Chiều)</div>
+                    <div class="card-title">Chụp 2 buổi<br><span style="font-size: 13px; opacity: 0.7; font-style: italic; font-weight: 400;">(Sáng - Chiều)</span></div>
                 </div>
                 <div class="card-price">2.600.000 VNĐ</div>
             </div>
@@ -380,7 +445,7 @@
 
         <!-- Chi tiết Dịch Vụ -->
         <div class="details-section">
-            <div class="details-box">
+            <div class="details-box liquid-glass">
                 <ul>
                     <li>Ekip <strong>1 thợ/1 buổi</strong>, ngày chụp.</li>
                     <li>Chụp <strong>không giới hạn</strong> số lượng File ảnh.</li>
@@ -393,53 +458,46 @@
             </div>
         </div>
 
-        <!-- Slide Ảnh -->
+        <!-- Slide Ảnh (Đã cập nhật danh sách link mới) -->
         <div class="slider-section">
             <div class="slider-wrapper">
                 <div class="slider-track" id="sliderTrack">
-                    <img class="slide" src="https://i.postimg.cc/D0jJQN1d/vy-layout.jpg" alt="Ảnh PSC 1">
-                    <img class="slide" src="https://i.postimg.cc/Zn7BPQ6P/CNT02580.jpg" alt="Ảnh PSC 2">
-                    <img class="slide" src="https://i.postimg.cc/BbYL5z22/CNT02821.jpg" alt="Ảnh PSC 3">
-                    <img class="slide" src="https://i.postimg.cc/hvyz8YVT/CNT02880.jpg" alt="Ảnh PSC 4">
-                    <img class="slide" src="https://i.postimg.cc/G3Y0sDx3/CNT04563.jpg" alt="Ảnh PSC 5">
-                    <img class="slide" src="https://i.postimg.cc/Y2gcmFzr/CNT04636.jpg" alt="Ảnh PSC 6">
-                    <img class="slide" src="https://i.postimg.cc/v89R6ntH/CNT04814.jpg" alt="Ảnh PSC 7">
-                    <img class="slide" src="https://i.postimg.cc/Gp2fqT04/layout-cuoi-duy-don.png" alt="Ảnh PSC 8">
-                    <img class="slide" src="https://i.postimg.cc/NFhPsNKW/layout-cuoi-duy-don-4.png" alt="Ảnh PSC 9">
+                    <img class="slide" src="https://i.postimg.cc/Gp2fqT04/layout-cuoi-duy-don.png" alt="Ảnh PSC 1">
+                    <img class="slide" src="https://i.postimg.cc/NFhPsNKW/layout-cuoi-duy-don-4.png" alt="Ảnh PSC 2">
+                    <img class="slide" src="https://i.postimg.cc/yYtvXyR0/CNT06934.jpg" alt="Ảnh PSC 3">
+                    <img class="slide" src="https://i.postimg.cc/D0jJQN1d/vy-layout.jpg" alt="Ảnh PSC 4">
+                    <img class="slide" src="https://i.postimg.cc/Zn7BPQ6P/CNT02580.jpg" alt="Ảnh PSC 5">
+                    <img class="slide" src="https://i.postimg.cc/c42XMB3Q/CNT02921.jpg" alt="Ảnh PSC 6">
+                    <img class="slide" src="https://i.postimg.cc/wTZ0cQNJ/CNT02945.jpg" alt="Ảnh PSC 7">
+                    <img class="slide" src="https://i.postimg.cc/G3Y0sDx3/CNT04563.jpg" alt="Ảnh PSC 8">
+                    <img class="slide" src="https://i.postimg.cc/v89R6ntH/CNT04814.jpg" alt="Ảnh PSC 9">
                 </div>
             </div>
         </div>
 
-        <!-- Nút Link Tham Khảo -->
+        <!-- Link tham khảo -->
         <div class="links-section">
-            <a href="#" class="btn-link">Tham khảo thêm ảnh PSC</a>
+            <a href="#" class="btn-link liquid-glass"><span>Tham khảo thêm ảnh PSC</span></a>
         </div>
 
-        <!-- FOOTER: Logo, Địa chỉ, Icon Link -->
+        <!-- Footer -->
         <div class="footer">
-            <div class="footer-logo">
-                <img src="https://i.postimg.cc/wvF7Hr48/chutoanfoto2026-logo-new.png" alt="Chu Toàn Foto Logo">
-            </div>
-            
             <div class="footer-address">
                 <span>Địa chỉ:</span> 179 Nguyễn Thị Minh Khai, P. Đức Xuân, Thái Nguyên
             </div>
 
             <div class="social-icons">
-                <!-- Facebook Icon -->
-                <a href="https://www.facebook.com/chutoan21" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/chutoan21" class="liquid-glass" target="_blank" title="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
                     </svg>
                 </a>
-                <!-- Instagram Icon -->
-                <a href="https://www.instagram.com/chutoan.fotos" target="_blank" title="Instagram">
+                <a href="https://www.instagram.com/chutoan.fotos" class="liquid-glass" target="_blank" title="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
                     </svg>
                 </a>
-                <!-- Zalo Icon -->
-                <a href="https://zalo.me/0398256746" target="_blank" title="Zalo">
+                <a href="https://zalo.me/0398256746" class="liquid-glass" target="_blank" title="Zalo">
                     <span class="zalo-text">Zalo</span>
                 </a>
             </div>
@@ -447,7 +505,6 @@
 
     </div>
 
-    <!-- Script điều khiển slide trượt tự nhiên trên điện thoại -->
     <script>
         const track = document.getElementById('sliderTrack');
         
